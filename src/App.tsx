@@ -1,7 +1,18 @@
 import React from 'react';
 import Question from './components/Question';
+import {useState} from 'react';
+
+const TOTAL_QUESTIONS = 10;
 
 function App() {
+  // Creating a loading state
+  const [loading, setLoading] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [number, setNumber] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(true);
+
   // Creating a function that will start when the game begins
   const startTrivia = async () => {
     
@@ -23,7 +34,14 @@ function App() {
       <button className='start' onClick={startTrivia}>Start!</button>
       <p className='score'>Score: </p>
       <p>Loading Questions...</p>
-      <Question />
+      <Question 
+        questionNumber = {number + 1}
+        totalNrOfQuestions = {TOTAL_QUESTIONS}
+        question = {questions[number].question}
+        answers = {questions[number].answers}
+        userAnswer = {userAnswers ? userAnswers[number] : undefined}
+        callback = {checkAnswer}
+      />
       <button className='next-question' onClick={nextQuestion}>Next Question</button>
     </div>
   );
