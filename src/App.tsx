@@ -2,24 +2,41 @@ import React from 'react';
 import Question from './components/Question';
 import { useState } from 'react';
 import { fetchQuizQuestions } from './API';
-import { Difficulty } from './API';
+import { Difficulty, QuestionState } from './API';
+
+type AnswerObject = {
+  question: string;
+  answer: string;
+  correct: boolean;
+  correctAnswer: string;
+}
 
 const TOTAL_QUESTIONS = 10;
 
 function App() {
   // Creating a loading state
   const [loading, setLoading] = useState(false);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
-  console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
+  console.log(questions);
 
   // Creating a function that will start when the game begins
   const startTrivia = async () => {
-    
+    // Ensuring a new game starts and reverting Game Over to false
+    setLoading(true);
+    setGameOver(false);
+    // Taking in new questions and putting them in a variable
+    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
+    setQuestions(newQuestions);
+    // Resetting everything else to default
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+    setLoading(false);
   }
 
   // Creating a function that will run when the User makes a selection
