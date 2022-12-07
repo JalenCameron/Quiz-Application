@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Question from './components/Question';
 
 function App() {
+  // Creating a function that will start when the game begins
+  const startTrivia = async () => {
+    
+  }
+
+  // Creating a function that will run when the User makes a selection
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  }
+
+  // Creating a function that will run when the user chooses to go to the next question
+  const nextQuestion = () => {
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Trivia Night</h1>
+      <button className='start' onClick={startTrivia}>Start!</button>
+      <p className='score'>Score: </p>
+      <p>Loading Questions...</p>
+      <Question />
+      <button className='next-question' onClick={nextQuestion}>Next Question</button>
     </div>
   );
 }
