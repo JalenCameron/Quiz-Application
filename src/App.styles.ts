@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Baloo Tammudu 2', cursive;
     }
 
-    @keyframes spinner {
+    @keyframes loading {
         0% {
             transform: rotate(0deg);
         }
@@ -29,20 +29,20 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
-    .loading-spinner {
-        width: 50px;
-        height: 50px;
-        border: 10px solid #f3f3f3; 
-        border-top: 10px solid #383636; 
+    .spinner {
+        border: 9px solid #ebfeff; 
+        border-top: 10px solid #0085a3; 
         border-radius: 50%;
-        animation: spinner 1.5s linear infinite;
+        width: 40px;
+        height: 40px;
+        animation: loading 1.5s linear infinite;
     }
 
-    .spinner-container {
+    .loading-container {
         display: grid;
         justify-content: center;
         align-items: center;
-        height: 350px;
+        height: 300px;
     }
 
     .greeting-wrapper {
@@ -62,6 +62,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 1rem;
 
     > p {
         color: #fff;
@@ -69,7 +70,7 @@ export const Wrapper = styled.div`
 
     .score {
         color: #020202;
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin: 1rem 0;
         padding: 1rem 1rem 0 1rem;
         background: #ebfeff;
@@ -105,7 +106,7 @@ export const Wrapper = styled.div`
 
     @media (min-width: 640px) {
         h1 {
-            font-size: 4.375rem;
+            font-size: 3rem;
         }
     }
 `;
