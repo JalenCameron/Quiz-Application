@@ -12,17 +12,17 @@ type Props = {
 const Question: React.FC<Props> = ({question, answers, callback, userAnswer, questionNumber, totalNrOfQuestions}) => (
   <div>
     <p className='number'>Question: {questionNumber} / {totalNrOfQuestions}</p>
-    <p dangerouslySetInnerHTML={{__html: question}}></p>
+    <p dangerouslySetInnerHTML={{__html: question}} />
     <div>
       {answers.map(answer => (
-        <div>
-          <button disabled={userAnswer} onClick={callback}>
+        <div key={answer}>
+          <button disabled={userAnswer} value={answer} onClick={callback}>
             <span dangerouslySetInnerHTML={{__html: answer}} />
           </button>
         </div>
       ))}
     </div>
   </div>
-)
+);
 
 export default Question;
