@@ -44,6 +44,18 @@ export const GlobalStyle = createGlobalStyle`
         align-items: center;
         height: 350px;
     }
+
+    .greeting-wrapper {
+        background: #ebfeff;
+        border-radius: 10px;
+        border: 2px solid #0085a3;
+        padding: 1rem;
+        max-width: 700px;
+
+        h2 {
+            text-align: center;
+        }
+    }
 `;
 
 export const Wrapper = styled.div`

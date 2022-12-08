@@ -5,6 +5,7 @@ import { fetchQuizQuestions } from './API';
 import { QuestionState, Difficulty } from './API';
 import { GlobalStyle, Wrapper } from './App.styles';
 import LoadingSpinner from './components/LoadingSpinner';
+import Greeting from './components/Greeting';
 
 export type AnswerObject = {
   question: string;
@@ -80,8 +81,11 @@ function App() {
       <GlobalStyle />
       <Wrapper>
         <h1>General Unknowledge</h1>
+
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
+
         {loading && <LoadingSpinner />}
+
         {!loading && !gameOver && (<Question 
           questionNumber = {number + 1}
           totalNrOfQuestions = {TOTAL_QUESTIONS}
@@ -90,14 +94,22 @@ function App() {
           userAnswer = {userAnswers ? userAnswers[number] : undefined}
           callback = {checkAnswer}
         />)}
+
         {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
           <button className='next-question' onClick={nextQuestion}>Next Question</button>
         ) : null}
+
         {/* Showing a 'Start' button for the opening game */}
         {gameOver ? (
-        <button className='start' onClick={startTrivia}>
-          Start!
-        </button>) : null}
+          <>
+            <Greeting />
+            
+            <button className='start' onClick={startTrivia}>
+              Start!
+            </button>
+          </>
+        ) : null}
+
         {/* Showing a 'Restart Game' button if they reach the end of the game */}
         {userAnswers.length === TOTAL_QUESTIONS ? (
         <button className='start' onClick={startTrivia}>
