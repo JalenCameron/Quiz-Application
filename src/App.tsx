@@ -3,8 +3,9 @@ import Question from './components/Question';
 import { useState } from 'react';
 import { fetchQuizQuestions } from './API';
 import { QuestionState, Difficulty } from './API';
+import { GlobalStyle, Wrapper } from './App.styles';
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -21,8 +22,6 @@ function App() {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
-
-  console.log(questions);
 
   // Creating a function that will start when the game begins
   const startTrivia = async () => {
@@ -65,30 +64,40 @@ function App() {
 
   // Creating a function that will run when the user chooses to go to the next question
   const nextQuestion = () => {
+    // Checking to see if on the last question
+    const currentQuestion = number + 1;
 
+    if(currentQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(currentQuestion);
+    }
   }
 
   return (
-    <div className="App">
-      <h1>Trivia Night</h1>
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-      <button className='start' onClick={startTrivia}>
-        Start!
-      </button>) : null}
-      {!gameOver ? <p className='score'>Score: </p> : null}
-      {loading && <p>Loading Questions...</p>}
-      {!loading && !gameOver && (<Question 
-        questionNumber = {number + 1}
-        totalNrOfQuestions = {TOTAL_QUESTIONS}
-        question = {questions[number].question}
-        answers = {questions[number].answers}
-        userAnswer = {userAnswers ? userAnswers[number] : undefined}
-        callback = {checkAnswer}
-      />)}
-      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
-        <button className='next-question' onClick={nextQuestion}>Next Question</button>
-      ) : null}
-    </div>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <h1>Trivia Night</h1>
+        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+        <button className='start' onClick={startTrivia}>
+          Start!
+        </button>) : null}
+        {!gameOver ? <p className='score'>Score: {score}</p> : null}
+        {loading && <p>Loading Questions...</p>}
+        {!loading && !gameOver && (<Question 
+          questionNumber = {number + 1}
+          totalNrOfQuestions = {TOTAL_QUESTIONS}
+          question = {questions[number].question}
+          answers = {questions[number].answers}
+          userAnswer = {userAnswers ? userAnswers[number] : undefined}
+          callback = {checkAnswer}
+        />)}
+        {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
+          <button className='next-question' onClick={nextQuestion}>Next Question</button>
+        ) : null}
+      </Wrapper>
+    </>
   );
 }
 
