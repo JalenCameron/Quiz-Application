@@ -80,7 +80,7 @@ function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>General Unknowledge</h1>
+        <h1>Quizipedia</h1>
 
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
 
@@ -103,7 +103,7 @@ function App() {
         {gameOver ? (
           <>
             <Greeting />
-            
+
             <button className='start' onClick={startTrivia}>
               Start!
             </button>
