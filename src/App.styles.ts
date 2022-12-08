@@ -56,20 +56,25 @@ export const Wrapper = styled.div`
     }
 
     .score {
-        color: #fff;
+        color: #020202;
         font-size: 2rem;
-        margin: 0;
+        margin: 1rem 0;
+        padding: 1rem 1rem 0 1rem;
+        background: #ebfeff;
+        border-radius: 10px;
+        border: 2px solid #0085a3;
     }
 
     h1 {
         font-family: 'Barlow', sans-serif;
-        font-size: 4.375rem;
+        font-size: 2rem;
         font-weight: 400;
         text-align: center;
         margin: 20px;
-        background-color: #fff;
         padding: 1rem;
+        background: #ebfeff;
         border-radius: 10px;
+        border: 2px solid #0085a3;
     }
 
     .start, .next-question {
@@ -84,5 +89,11 @@ export const Wrapper = styled.div`
 
     .start {
         max-width: 200px;
+    }
+
+    @media (min-width: 640px) {
+        h1 {
+            font-size: 4.375rem;
+        }
     }
 `;

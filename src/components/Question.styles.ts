@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-    width: 700px;
+    width: 300px;
     background: #ebfeff;
     border-radius: 10px;
     border: 2px solid #0085a3;
     padding: 20px;
+    margin-bottom: 1rem;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
     text-align: center;
 
     p {
         font-size: 1rem;
+    }
+
+    @media (min-width: 640px) {
+        width: 700px;
     }
 `;
 
